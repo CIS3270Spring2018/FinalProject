@@ -1,5 +1,6 @@
 package flightApp;
 
+
 public class Admin extends Customer {
 	
 	
@@ -19,7 +20,7 @@ public class Admin extends Customer {
 		 
 		 // add the new flight to the flight database
 		 
-		 // show the flight was succesfully added or an error
+		 // show the flight was successfully added or an error
 		 
 	 }
 	 public void deleteFlight()

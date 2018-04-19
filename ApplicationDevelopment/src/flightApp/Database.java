@@ -121,6 +121,7 @@ public class Database {
 			resultSet = statement.executeUpdate();
 			
 			System.out.println("Flight added");
+		
 
 
 		} catch (ClassNotFoundException e) {
@@ -714,7 +715,104 @@ public class Database {
 				}
 
 	}
+
+
+	public Customer login(String username, String password)
+	{
+	
+			  
+			
+			
+			// objects need to make connection to jdbc
+			  Customer cust = null;
+			  Connection connection = null;
+			  PreparedStatement statement = null;
+			  ResultSet resultSet = null;
+			  Scanner scan = new Scanner(System.in);
+			  
+			  
+			  /*variable probably be removed*/
+				String usernameDB = null,passwordDB = null,fname = null,lname = null,address = null,zip = null, email = null,
+						ssn = null, securityQuestion = null,answer = null;
+				Boolean admin = false;
+			  
+		
+				/** add try catch */
+			  
+		    // Load the JDBC driver
+		    try {
+				Class.forName("com.mysql.jdbc.Driver");
+				
+				System.out.println("Driver loaded");
+				
+				// Establish a connection
+				connection = DriverManager.getConnection
+						("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+				
+				System.out.println("Database connected");
+				
+				
+				
+				// Create a statement
+				statement = connection.prepareStatement("select * from person where username = ? and password = ? ");
+				
+				statement.setString(1,username);
+				statement.setString(2,password);
+				
+				// Execute a statement
+				resultSet = statement.executeQuery();
+				
+				
+				while (resultSet.next())
+				{
+					usernameDB = resultSet.getString(2);
+					passwordDB  =resultSet.getString(3);
+					fname  =resultSet.getString(5);
+					lname = resultSet.getString(4);
+					address  =resultSet.getString(6);
+					zip = resultSet.getString(7);
+					email  =resultSet.getString(8);
+					ssn  =resultSet.getString(9);
+					securityQuestion  =resultSet.getString(10);
+					answer  =resultSet.getString(11);
+				    admin  =resultSet.getBoolean(12);
+				}
+				
+				System.out.println("UserName : " + usernameDB);
+				System.out.println("Password : " +passwordDB);
+				System.out.println("Name : " + lname + "," +fname);
+				System.out.println("Address : " + address+ "," + zip);
+				System.out.println("Email : " +email);
+				System.out.println("SSN : " +ssn);
+				System.out.println("Security Question : " +securityQuestion);
+				System.out.println("Answer : " +answer);
+				System.out.println("Admin : " +admin);
+				
+				cust = new Customer(fname,lname,address,zip,usernameDB,passwordDB,email,ssn,securityQuestion,answer,admin);
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+		
+		    
+	
+		    return cust;
+		    }
+	
+		    
+		     
+		     
 }
+		     
+		    
 
 		
 	

@@ -10,19 +10,19 @@ public class Customer extends Person {
 private ArrayList<Flight> bookedFlights;
  
  public Customer(String first_name,String last_name,String address,String zip,String username,
-		 String password,String email,String ssn,String security_question,String sq_answer){
+		 String password,String email,String ssn,String security_question,String sq_answer,boolean admin){
 	 
 	 
-	 super(first_name,last_name,address,zip,username,password,email,ssn,security_question,sq_answer);
+	 super(first_name,last_name,address,zip,username,password,email,ssn,security_question,sq_answer,admin);
 	 
 	 
  }
  
  
  
-
+@Override
  public String toString(Object o){
-	 return o.toString();
+	 return "The customer is " + getFirst_name()+ " " + getLast_name();
 	 
  }
  
@@ -99,6 +99,9 @@ private ArrayList<Flight> bookedFlights;
 		// select password from customer where id = customerid
 		
 		// display customer password with javafx
+		
+		/*  code without db*/
+		System.out.println("The password for" + getUsername() + ": " + getPassword());
 		
 	}
 

@@ -1,6 +1,7 @@
 package flightApp;
 
-
+import java.sql.Driver;
+import java.sql.DriverManager;
 public class Admin extends Customer {
 	
 	
@@ -9,7 +10,7 @@ public class Admin extends Customer {
 			 String password,String email,String ssn,String security_question,String sq_answer){
 		 
 		 
-		 super(first_name,last_name,address,zip,username,password,email,ssn,security_question,sq_answer);
+		 super(first_name,last_name,address,zip,username,password,email,ssn,security_question,sq_answer,true);
 		 
 		 
 	 }

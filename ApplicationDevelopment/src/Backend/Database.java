@@ -1,6 +1,6 @@
 package Backend;
 import java.sql.*;
-import java.util.Scanner;
+
 
 import flightApp.Customer;
 import flightApp.VariableObject;
@@ -38,17 +38,14 @@ public class Database {
 
 
 		try {
-			// Load the JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded");
+		
 
 			// Establish a connection
-			connection = DriverManager.getConnection
-					("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+			connection = getDriverConnection();
 			System.out.println("Database connected");
 
 			// Create a statement
-			statement = connection.prepareStatement("select * from demoflight "); 
+			statement = connection.prepareStatement(Query.SELECT_ALL_FLIGHTS); 
 
 
 			// Execute a statement
@@ -56,8 +53,8 @@ public class Database {
 
 			// Iterate through the result and print the student names
 			while (resultSet.next())
-				System.out.println("flight# : " +resultSet.getString(1) + " cust# " +
-						resultSet.getString(2) + " Depart: " + resultSet.getString(3) + " Destination:" + resultSet.getString(4) );
+				System.out.println("Flight# : " +resultSet.getString(1) + "\tCustomer# " +
+						resultSet.getString(2) + "\tDepart: " + resultSet.getString(3) + "\tDestination: " + resultSet.getString(4) );
 
 		} catch (ClassNotFoundException e) {
 
@@ -98,19 +95,14 @@ public class Database {
 if(o.isAdmin())
 {
 		try {
-			// Load the JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded");
+			
 
 			// Establish a connection
-			connection = DriverManager.getConnection
-					("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
-			System.out.println("Database connected");
+			connection = getDriverConnection();
+				System.out.println("Database connected");
 
 			// Create a statement
-			statement = connection.prepareStatement("insert into demoflight "
-					+ "(numberofcustomers,startcity,destinationcity)"
-					+ "values (?,?,?)");
+			statement = connection.prepareStatement(Query.INSERT_FLIGHT_TO_DATABASE);
 
 			statement.setInt(1,o.getFlight_vo().getNum_of_customers());
 			statement.setString(2, o.getFlight_vo().getDeparted_city());
@@ -158,18 +150,13 @@ if(o.isAdmin())
 				{
 
 				try {
-					// Load the JDBC driver
-					Class.forName("com.mysql.jdbc.Driver");
-					System.out.println("Driver loaded");
-
+				
 					// Establish a connection
-					connection = DriverManager.getConnection
-							("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+					connection = getDriverConnection();
 					System.out.println("Database connected");
 
 					// Create a statement
-					statement = connection.prepareStatement("delete from demoflight "
-							+ "where flightnumber = ? and startcity = ? and destinationcity = ?");
+					statement = connection.prepareStatement(Query.DELETE_FLIGHT_FROM_DATABASE);
 
 					statement.setString(1,o.getFlight_vo().getFlight_number());
 					statement.setString(2, o.getFlight_vo().getDeparted_city());
@@ -219,19 +206,13 @@ if(o.isAdmin())
 
 
 	try {
-		// Load the JDBC driver
-		Class.forName("com.mysql.jdbc.Driver");
-		System.out.println("Driver loaded");
 
 		// Establish a connection
-		connection = DriverManager.getConnection
-				("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
-		System.out.println("Database connected");
+		connection = getDriverConnection();
+				System.out.println("Database connected");
 
 		// Create a statement
-		statement = connection.prepareStatement("insert into person "
-				+ "(username,password,firstname,lastname,address,zip,email,ssn,securityquestion,questionanswer,admin)"
-				+ "values (?,?,?,?,?,?,?,?,?,?,?)");
+		statement = connection.prepareStatement(Query.INSERT_CUSTOMER_INTO_PERSON_DATABASE);
 
 		statement.setString(1,o.getUsername());
 		statement.setString(2,o.getPassword());
@@ -288,19 +269,14 @@ if(o.isAdmin())
 
 
 		try {
-			// Load the JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded");
+	
 
 			// Establish a connection
-			connection = DriverManager.getConnection
-					("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+			connection = getDriverConnection();
 			System.out.println("Database connected");
 
 			// Create a statement
-			statement = connection.prepareStatement("insert into person "
-					+ "(username,password,firstname,lastname,address,zip,email,ssn,securityquestion,questionanswer,admin)"
-					+ "values (?,?,?,?,?,?,?,?,?,?,?)");
+			statement = connection.prepareStatement(Query.INSERT_ADMIN_INTO_PERSON_DATABASE);
 
 			statement.setString(1,o.getUsername());
 			statement.setString(2, o.getPassword());
@@ -353,17 +329,13 @@ if(o.isAdmin())
 
 
 		try {
-			// Load the JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded");
-
+		
 			// Establish a connection
-			connection = DriverManager.getConnection
-					("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+			connection = getDriverConnection();
 			System.out.println("Database connected");
 
 			// Create a statement
-			statement = connection.prepareStatement("select * from person ");
+			statement = connection.prepareStatement(Query.SELECT_ALL_FROM_PERSON);
 
 
 
@@ -417,18 +389,13 @@ if(o.isAdmin())
 
 		// get the number of customers in the flight
 		try {
-			// Load the JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded");
-
+			
 			// Establish a connection
-			connection = DriverManager.getConnection
-					("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+			connection = getDriverConnection();
 			System.out.println("Database connected");
 
 			// Create a statement
-			statement = connection.prepareStatement("select numberofcustomers, capacity from demoflight"
-					+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
+			statement = connection.prepareStatement(Query.GET_NUMBER_OF_CUSTOMERS);
 
 		
 			statement.setString(1,o.getFlight_vo().getFlight_number()); 
@@ -480,18 +447,13 @@ if(o.isAdmin())
 		if(numberOfCustomers > -1 && capacity > -1 && numberOfCustomers < capacity)
 		{
 			try {
-				// Load the JDBC driver
-				Class.forName("com.mysql.jdbc.Driver");
-				System.out.println("Driver loaded");
-
+		
 				// Establish a connection
-				connection = DriverManager.getConnection
-						("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+				connection = getDriverConnection();
 				System.out.println("Database connected");
 
 				// Create a statement
-				statement = connection.prepareStatement("update demoflight set numberofcustomers = ?"
-						+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
+				statement = connection.prepareStatement(Query.ADD_USER_TO_FLIGHT);
 
 				statement.setInt(1, ++numberOfCustomers);
 				statement.setString(2,o.getFlight_vo().getFlight_number()); 
@@ -548,18 +510,13 @@ if(o.isAdmin())
 
 		// get the number of customers in the flight
 		try {
-			// Load the JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded");
-
+		
 			// Establish a connection
-			connection = DriverManager.getConnection
-					("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+			connection = getDriverConnection();
 			System.out.println("Database connected");
 
 			// Create a statement
-			statement = connection.prepareStatement("select numberofcustomers, capacity from demoflight"
-					+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
+			statement = connection.prepareStatement(Query.GET_NUMBER_OF_CUSTOMERS);
 
 
 			statement.setString(1,o.getFlight_vo().getFlight_number()); 
@@ -611,18 +568,13 @@ if(o.isAdmin())
 		if(numberOfCustomers > 0 && capacity > -1)
 		{
 			try {
-				// Load the JDBC driver
-				Class.forName("com.mysql.jdbc.Driver");
-				System.out.println("Driver loaded");
-
+		
 				// Establish a connection
-				connection = DriverManager.getConnection
-						("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+				connection = getDriverConnection();
 				System.out.println("Database connected");
 
 				// Create a statement
-				statement = connection.prepareStatement("update demoflight set numberofcustomers = ?"
-						+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
+				statement = connection.prepareStatement(Query.REMOVE_USER_FROM_FLIGHT);
 
 				statement.setInt(1, --numberOfCustomers);
 				statement.setString(2,o.getFlight_vo().getFlight_number()); 
@@ -674,18 +626,14 @@ if(o.isAdmin())
 			
 				
 				try {
-					// Load the JDBC driver
-					Class.forName("com.mysql.jdbc.Driver");
-					System.out.println("Driver loaded");
+				
 
 					// Establish a connection
-					connection = DriverManager.getConnection
-							("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+					connection = getDriverConnection();
 					System.out.println("Database connected");
 
 					// Create a statement
-					statement = connection.prepareStatement("update  demoflight set flightnumber = ? ,startcity = ? ,destinationcity = ? "
-							+ "where flightnumber = ? and startcity = ? and destinationcity = ?");
+					statement = connection.prepareStatement(Query.UPDATE_FLIGHT);
 
 					statement.setInt(1,newFlightNum);
 					statement.setString(2, newDepartCity);
@@ -733,7 +681,7 @@ if(o.isAdmin())
 			  Connection connection = null;
 			  PreparedStatement statement = null;
 			  ResultSet resultSet = null;
-			  Scanner scan = new Scanner(System.in);
+			
 			  
 			  
 			  /*variable probably be removed*/
@@ -746,20 +694,16 @@ if(o.isAdmin())
 			  
 		    // Load the JDBC driver
 		    try {
-				Class.forName("com.mysql.jdbc.Driver");
-				
-				System.out.println("Driver loaded");
 				
 				// Establish a connection
-				connection = DriverManager.getConnection
-						("jdbc:mysql://localhost/final?autoReconnect=true&useSSL=false", "root", "");
+				connection = getDriverConnection();
 				
 				System.out.println("Database connected");
 				
 				
 				
 				// Create a statement
-				statement = connection.prepareStatement("select * from person where username = ? and password = ? ");
+				statement = connection.prepareStatement(Query.LOGIN_PERSON);
 				
 				statement.setString(1,o.getUsername());
 				statement.setString(2,o.getPassword());
@@ -814,10 +758,27 @@ if(o.isAdmin())
 	                                                                                                                                                           	
 		    
 		     
+// method to check for drivers and start connection
+	
+	private Connection getDriverConnection() throws ClassNotFoundException, SQLException
+	{
+		Connection connection = null;
+		
+		Class.forName(Query.DRIVER);
+		
+		System.out.println("Driver loaded");
+		
+		// Establish a connection
+		connection = DriverManager.getConnection
+				(Query.DATABASE, Query.USERNAME,Query.PASSWORD );
+		
+		System.out.println("Database connected");
+		return connection;
+	}
+	
 		     
 }
-		     
-		    
+
 
 		
 	

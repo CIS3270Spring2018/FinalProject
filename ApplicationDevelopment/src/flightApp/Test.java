@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import Backend.Database;
+
 public class Test {
 
 	public void run(){
@@ -28,14 +30,13 @@ public class Test {
 		
 			
 			
-
+		VariableObject v = new VariableObject();
 		
-		Database d = new Database();
-		
-d.updateFlightDB(3, "Boston", "Atlanta", 4, "CHI", "Boston");
-		
-			
-			
+		Database d = new Database(v);
+	
+		d.showAllFlights();	
+	
+	
 	
 		
 		
@@ -45,20 +46,22 @@ d.updateFlightDB(3, "Boston", "Atlanta", 4, "CHI", "Boston");
 
 	}
 
-	public Person login() throws SQLException, ClassNotFoundException {
+	
+	// delete following
+	/*public Person login() throws SQLException, ClassNotFoundException {
 						  
 	
 		
 		
-				  Customer cust = null;
+				 Customer cust = null;
 				  Connection connection = null;
 				  PreparedStatement statement = null;
 				  ResultSet resultSet = null;
-				  Scanner scan = new Scanner(System.in);
+				  Scanner scan = new Scanner(System.in);*/
 				  
 			
 					/** add try catch */
-				  try{
+				/*  try{
 				  System.out.println("Enter your username");
 				  String username = scan.next();
 				  System.out.println("Enter your password");
@@ -137,7 +140,7 @@ d.updateFlightDB(3, "Boston", "Atlanta", 4, "CHI", "Boston");
 				//statement.close();
 				cust = null;
 			    }
-			  }
+			  }*/
 	}
 
 

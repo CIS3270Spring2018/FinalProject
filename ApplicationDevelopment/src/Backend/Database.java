@@ -1,6 +1,9 @@
-package flightApp;
+package Backend;
 import java.sql.*;
 import java.util.Scanner;
+
+import flightApp.Customer;
+import flightApp.VariableObject;
 
 public class Database {
 

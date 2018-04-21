@@ -1,4 +1,4 @@
-package flightApp;
+package FrontEnd;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;

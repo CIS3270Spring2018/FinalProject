@@ -2,6 +2,7 @@ package flightApp;
 
 import java.util.ArrayList;
 
+
 public class Customer extends Person {
 
 
@@ -9,11 +10,10 @@ public class Customer extends Person {
 
 private ArrayList<Flight> bookedFlights;
  
- public Customer(String first_name,String last_name,String address,String zip,String username,
-		 String password,String email,String ssn,String security_question,String sq_answer,boolean admin){
+ public Customer(VariableObject o){
 	 
 	 
-	 super(first_name,last_name,address,zip,username,password,email,ssn,security_question,sq_answer,admin);
+	 super(o);
 	 
 	 
  }

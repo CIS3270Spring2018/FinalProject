@@ -6,11 +6,10 @@ public class Admin extends Customer {
 	
 	
 	
-	 public Admin(String first_name,String last_name,String address,String zip,String username,
-			 String password,String email,String ssn,String security_question,String sq_answer){
+	 public Admin(VariableObject o){
 		 
 		 
-		 super(first_name,last_name,address,zip,username,password,email,ssn,security_question,sq_answer,true);
+		 super(o);
 		 
 		 
 	 }

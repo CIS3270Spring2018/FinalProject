@@ -29,16 +29,65 @@ public class Flight extends Plane {
 	}
 	
 	// constructor to create a flight
-	public Flight(int max_customers, int num_of_customers, ArrayList<Customer> cust, String departed_city,
-			String destination, String flight_number, double price) {
-		super(max_customers);
+	public Flight(VariableObject o) {
+		super(o.getMax_customers());
+		this.num_of_customers = o.getNum_of_customers();
+		this.cust = o.getCust();
+		this.departed_city = o.getDeparted_city();
+		this.destination = o.getDestination();
+		this.flight_number = o.getFlight_number();
+		this.price = o.getPrice();
+	}
+	
+	public int getNum_of_customers() {
+		return num_of_customers;
+	}
+
+	public void setNum_of_customers(int num_of_customers) {
 		this.num_of_customers = num_of_customers;
+	}
+
+	public ArrayList<Customer> getCust() {
+		return cust;
+	}
+
+	public void setCust(ArrayList<Customer> cust) {
 		this.cust = cust;
+	}
+
+	public String getDeparted_city() {
+		return departed_city;
+	}
+
+	public void setDeparted_city(String departed_city) {
 		this.departed_city = departed_city;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+
+	public String getFlight_number() {
+		return flight_number;
+	}
+
+	public void setFlight_number(String flight_number) {
 		this.flight_number = flight_number;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
 		this.price = price;
 	}
+
+
 	
 	public void showAllFlights(){
 		

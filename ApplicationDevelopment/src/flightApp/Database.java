@@ -9,14 +9,11 @@ public class Database {
 
 
 
-	public Database(){
+	
+	public Database(VariableObject o){
 
-
-
-	}
-	public Database(Customer cust){
-
-		this.cust = cust;
+		// call the set customer method
+		setCust(o);
 
 	}
 	public Customer getCust() {
@@ -24,8 +21,8 @@ public class Database {
 	}
 
 
-	public void setCust(Customer cust) {
-		this.cust = cust;
+	public void setCust(VariableObject o) {
+		this.cust = o.getCust_vo();
 	}
 
 	public void showAllFlights() {
@@ -87,7 +84,7 @@ public class Database {
 		
 	}
 		
-	public void addFlightToDB(int numberOfCustomers, String departCity,String destinationCity){
+	public void addFlightToDB(VariableObject o){
 		
 		// objects needed for connection
 		Connection connection = null;
@@ -95,7 +92,8 @@ public class Database {
 		int resultSet;
 
 
-
+if(o.isAdmin())
+{
 		try {
 			// Load the JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
@@ -111,9 +109,9 @@ public class Database {
 					+ "(numberofcustomers,startcity,destinationcity)"
 					+ "values (?,?,?)");
 
-			statement.setInt(1,numberOfCustomers);
-			statement.setString(2, departCity);
-			statement.setString(3, destinationCity);
+			statement.setInt(1,o.getFlight_vo().getNum_of_customers());
+			statement.setString(2, o.getFlight_vo().getDeparted_city());
+			statement.setString(3, o.getFlight_vo().getDestination());
 
 
 
@@ -142,17 +140,19 @@ public class Database {
 				System.out.println(e.getMessage());
 			}
 		}
+}
 
 	}
 
-	public void deleteFlightDB(int flightNum,String departCity,String destinationCity)
+	public void deleteFlightDB(VariableObject o)
 	{
 		// objects needed for connection
 				Connection connection = null;
 				PreparedStatement statement = null;
 				int resultSet;
 
-
+				if( o.isAdmin())
+				{
 
 				try {
 					// Load the JDBC driver
@@ -168,9 +168,9 @@ public class Database {
 					statement = connection.prepareStatement("delete from demoflight "
 							+ "where flightnumber = ? and startcity = ? and destinationcity = ?");
 
-					statement.setInt(1,flightNum);
-					statement.setString(2, departCity);
-					statement.setString(3, destinationCity);
+					statement.setString(1,o.getFlight_vo().getFlight_number());
+					statement.setString(2, o.getFlight_vo().getDeparted_city());
+					statement.setString(3, o.getFlight_vo().getDestination());
 
 
 
@@ -196,11 +196,14 @@ public class Database {
 						System.out.println(e.getMessage());
 					}
 				}
+				}
 
 	}
 
-	public void signupCustomer(String first_name,String last_name,String address,String zip,String username,String
-		 password,String email,String ssn,String security_question,String question_answer){	
+	public void signupCustomer(VariableObject o){
+		
+		/*String first_name,String last_name,String address,String zip,String username,String
+		 password,String email,String ssn,String security_question,String question_answer*/
 	
 	// objects needed for connection
 	Connection connection = null;
@@ -227,16 +230,16 @@ public class Database {
 				+ "(username,password,firstname,lastname,address,zip,email,ssn,securityquestion,questionanswer,admin)"
 				+ "values (?,?,?,?,?,?,?,?,?,?,?)");
 
-		statement.setString(1,username);
-		statement.setString(2, password);
-		statement.setString(3, first_name);
-		statement.setString(4, last_name);
-		statement.setString(5, address);
-		statement.setString(6, zip);
-		statement.setString(7, email);
-		statement.setString(8, ssn);
-		statement.setString(9, security_question);
-		statement.setString(10, question_answer);
+		statement.setString(1,o.getUsername());
+		statement.setString(2,o.getPassword());
+		statement.setString(3, o.getFirst_name());
+		statement.setString(4, o.getLast_name());
+		statement.setString(5, o.getAddress());
+		statement.setString(6, o.getZip());
+		statement.setString(7, o.getEmail());
+		statement.setString(8, o.getSsn());
+		statement.setString(9, o.getSecurity_question());
+		statement.setString(10, o.getQuestion_answer());
 		statement.setBoolean(11, false);
 
 
@@ -269,8 +272,7 @@ public class Database {
 
 }
 		
-	public void signupAdmin(String first_name,String last_name,String address,String zip,String username,String
-			 password,String email,String ssn,String security_question,String question_answer){	
+	public void signupAdmin(VariableObject o){	
 		
 		// objects needed for connection
 		Connection connection = null;
@@ -297,16 +299,16 @@ public class Database {
 					+ "(username,password,firstname,lastname,address,zip,email,ssn,securityquestion,questionanswer,admin)"
 					+ "values (?,?,?,?,?,?,?,?,?,?,?)");
 
-			statement.setString(1,username);
-			statement.setString(2, password);
-			statement.setString(3, first_name);
-			statement.setString(4, last_name);
-			statement.setString(5, address);
-			statement.setString(6, zip);
-			statement.setString(7, email);
-			statement.setString(8, ssn);
-			statement.setString(9, security_question);
-			statement.setString(10, question_answer);
+			statement.setString(1,o.getUsername());
+			statement.setString(2, o.getPassword());
+			statement.setString(3, o.getFirst_name());
+			statement.setString(4,o.getLast_name());
+			statement.setString(5, o.getAddress());
+			statement.setString(6,o.getZip());
+			statement.setString(7,o.getEmail());
+			statement.setString(8,o.getSsn());
+			statement.setString(9,o.getSecurity_question());
+			statement.setString(10, o.getQuestion_answer());
 			statement.setBoolean(11, true);
 
 
@@ -398,7 +400,7 @@ public class Database {
 	}
 			
 		
-	public void addUserToFlightDB(int flightNumber, String departCity,String destinationCity){
+	public void addUserToFlightDB(VariableObject o){
 		
 		// objects needed for connection
 		Connection connection = null;
@@ -426,9 +428,9 @@ public class Database {
 					+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
 
 		
-			statement.setInt(1,flightNumber); 
-			statement.setString(2, departCity);
-			statement.setString(3, destinationCity);
+			statement.setString(1,o.getFlight_vo().getFlight_number()); 
+			statement.setString(2, o.getFlight_vo().getDeparted_city());
+			statement.setString(3, o.getFlight_vo().getDestination());
 
 
 
@@ -489,9 +491,9 @@ public class Database {
 						+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
 
 				statement.setInt(1, ++numberOfCustomers);
-				statement.setInt(2,flightNumber); 
-				statement.setString(3, departCity);
-				statement.setString(4, destinationCity);
+				statement.setString(2,o.getFlight_vo().getFlight_number()); 
+				statement.setString(3, o.getFlight_vo().getDeparted_city());
+				statement.setString(4, o.getFlight_vo().getDestination());
 
 
 
@@ -529,7 +531,7 @@ public class Database {
 	}
 
 
-	public void removeUserFromFlightDB(int flightNumber, String departCity,String destinationCity){
+	public void removeUserFromFlightDB(VariableObject o){
 
 		// objects needed for connection
 		Connection connection = null;
@@ -557,9 +559,9 @@ public class Database {
 					+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
 
 
-			statement.setInt(1,flightNumber); 
-			statement.setString(2, departCity);
-			statement.setString(3, destinationCity);
+			statement.setString(1,o.getFlight_vo().getFlight_number()); 
+			statement.setString(2, o.getFlight_vo().getDeparted_city());
+			statement.setString(3, o.getFlight_vo().getDestination());
 
 
 
@@ -620,9 +622,9 @@ public class Database {
 						+ " where flightnumber = ? and startcity = ? and destinationcity =?  ");
 
 				statement.setInt(1, --numberOfCustomers);
-				statement.setInt(2,flightNumber); 
-				statement.setString(3, departCity);
-				statement.setString(4, destinationCity);
+				statement.setString(2,o.getFlight_vo().getFlight_number()); 
+				statement.setString(3, o.getFlight_vo().getDeparted_city());
+				statement.setString(4, o.getFlight_vo().getDestination());
 
 
 
@@ -659,7 +661,7 @@ public class Database {
 		}
 	}
 
-	public void updateFlightDB(int flightNum,String departCity,String destinationCity,	int newFlightNum,String newDepartCity,String newDestinationCity)
+	public void updateFlightDB(VariableObject o,int newFlightNum,String newDepartCity,String newDestinationCity)
 	{
 		
 		// objects needed for connection
@@ -685,9 +687,9 @@ public class Database {
 					statement.setInt(1,newFlightNum);
 					statement.setString(2, newDepartCity);
 					statement.setString(3, newDestinationCity);
-					statement.setInt(4,flightNum);
-					statement.setString(5, departCity);
-					statement.setString(6, destinationCity);
+					statement.setString(4,o.getFlight_vo().getFlight_number());
+					statement.setString(5, o.getFlight_vo().getDeparted_city());
+					statement.setString(6, o.getFlight_vo().getDestination());
 
 
 
@@ -717,14 +719,14 @@ public class Database {
 	}
 
 
-	public Customer login(String username, String password)
+	public VariableObject login(VariableObject o)
 	{
 	
 			  
 			
 			
 			// objects need to make connection to jdbc
-			  Customer cust = null;
+		VariableObject n = null;
 			  Connection connection = null;
 			  PreparedStatement statement = null;
 			  ResultSet resultSet = null;
@@ -756,12 +758,11 @@ public class Database {
 				// Create a statement
 				statement = connection.prepareStatement("select * from person where username = ? and password = ? ");
 				
-				statement.setString(1,username);
-				statement.setString(2,password);
+				statement.setString(1,o.getUsername());
+				statement.setString(2,o.getPassword());
 				
 				// Execute a statement
 				resultSet = statement.executeQuery();
-				
 				
 				while (resultSet.next())
 				{
@@ -788,7 +789,7 @@ public class Database {
 				System.out.println("Answer : " +answer);
 				System.out.println("Admin : " +admin);
 				
-				cust = new Customer(fname,lname,address,zip,usernameDB,passwordDB,email,ssn,securityQuestion,answer,admin);
+				n = new VariableObject(fname,lname,address,zip,usernameDB,passwordDB,email,ssn,securityQuestion,answer,admin);
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -804,9 +805,10 @@ public class Database {
 		
 		    
 	
-		    return cust;
+		    return n;
 		    }
 	
+	                                                                                                                                                           	
 		    
 		     
 		     

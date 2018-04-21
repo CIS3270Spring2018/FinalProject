@@ -3,6 +3,7 @@ package flightApp;
 import java.util.ArrayList;
 
 public class VariableObject {
+	private int max_customers;         // max number of customers
 	private int num_of_customers;      // number of customers on the flight
 	private ArrayList<Customer> cust;  // arraylist to hold all the customers info
 	private String departed_city;      // the city the plane leaves
@@ -11,9 +12,27 @@ public class VariableObject {
 	//private Date arrival_time;       // the day and time the flight will end
 	private String flight_number;      // the flights number
 	private double price;              // the price of the flight// might need to use bigdecimal for rounding issue
+	
+	
+	public VariableObject(String first_name, String last_name, String address, String zip, String username,
+			String password, String email, String ssn, String security_question, String question_answer,
+			boolean admin) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.address = address;
+		this.zip = zip;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.ssn = ssn;
+		this.security_question = security_question;
+		this.question_answer = question_answer;
+		this.admin = admin;
+	}
 	private String first_name;  // hold the persons first name
 	private String last_name;   // hold the persons last name
-	 //private Date dob; // might want to use new date format local date of
+	//private Date dob; // might want to use new date format local date of
 	private String address;     // hold the persons address
 	private String zip;         // hold the person zip code
 	private String username;    // hold the persons username 
@@ -21,10 +40,37 @@ public class VariableObject {
 	private String email;         // hold the persons email
 	private String ssn;           // hold the persons social security number
 	private String security_question;   // hold the persons security question
-	private String sq_answer;   // hold the persons security questions answer	
+	private String question_answer;   // hold the persons security questions answer	
 	private boolean admin;
+	private Customer cust_vo;
+	private Flight flight_vo;
+	
+	
+	public VariableObject() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	public int getMax_customers() {
+		return max_customers;
+	}
+	public void setMax_customers(int max_customers) {
+		this.max_customers = max_customers;
+	}
 	
 	// getters + setters
+	public Customer getCust_vo() {
+		return cust_vo;
+	}
+	public void setCust_vo(Customer cust_vo) {
+		this.cust_vo = cust_vo;
+	}
+	public Flight getFlight_vo() {
+		return flight_vo;
+	}
+	public void setFlight_vo(Flight flight_vo) {
+		this.flight_vo = flight_vo;
+	}
 	public int getNum_of_customers() {
 		return num_of_customers;
 	}
@@ -115,17 +161,17 @@ public class VariableObject {
 	public void setSecurity_question(String security_question) {
 		this.security_question = security_question;
 	}
-	public String getSq_answer() {
-		return sq_answer;
-	}
-	public void setSq_answer(String sq_answer) {
-		this.sq_answer = sq_answer;
-	}
 	public boolean isAdmin() {
 		return admin;
 	}
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
+	}
+	public String getQuestion_answer() {
+		return question_answer;
+	}
+	public void setQuestion_answer(String question_answer) {
+		this.question_answer = question_answer;
 	}
 
 }

@@ -16,24 +16,23 @@ public abstract class Person {
 	private String email;         // hold the persons email
 	private String ssn;           // hold the persons social security number
 	private String security_question;   // hold the persons security question
-	private String sq_answer;   // hold the persons security questions answer	
+	private String question_answer;   // hold the persons security questions answer	
 	private boolean admin;
 	
 	
 	// constructor with all the information needed to make a customer
-	 public Person(String first_name, String last_name, String address, String zip, String username,
-			String password, String email, String ssn, String security_question,String sq_answer,boolean admin) {
+	 public Person(VariableObject o) {
 	
-		 this.first_name = first_name;
-		 this.last_name = last_name;
-		 this.address = address;
-		 this.zip = zip;
-		 this.username = username;
-		 this.password = password;
-		 this.email = email;
-		 this.ssn = ssn;
-		 this.security_question = security_question;
-		 this.admin = admin;
+		 this.first_name = o.getFirst_name();
+		 this.last_name = o.getLast_name();
+		 this.address = o.getAddress();
+		 this.zip = o.getZip();
+		 this.username = o.getUsername();
+		 this.password = o.getPassword();
+		 this.email = o.getEmail();
+		 this.ssn = o.getSsn();
+		 this.security_question = o.getSecurity_question();
+		 this.admin = o.isAdmin();
 	}
 
 	abstract  String toString(Object o);
@@ -115,12 +114,12 @@ public abstract class Person {
 			this.security_question = security_question;
 		}
 
-		public String getSq_answer() {
-			return sq_answer;
+		public String getQuestion_answer() {
+			return question_answer;
 		}
 
-		public void setSq_answer(String sq_answer) {
-			this.sq_answer = sq_answer;
+		public void setQuestion_answer(String question_answer) {
+			this.question_answer = question_answer;
 		}
 	 
 

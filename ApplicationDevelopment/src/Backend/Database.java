@@ -27,7 +27,7 @@ public class Database {
 	public void setCust(VariableObject o) {
 		this.cust = o.getCust_vo();
 	}
-
+ 
 	public void showAllFlights() {
 
 		// objects needed for connection

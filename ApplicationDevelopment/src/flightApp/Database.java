@@ -11,7 +11,6 @@ public class Database {
 	Customer cust = null;
 
 
-
 	
 	public Database(VariableObject o){
 

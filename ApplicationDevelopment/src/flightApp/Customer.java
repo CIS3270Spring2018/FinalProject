@@ -15,7 +15,7 @@ private ArrayList<Flight> bookedFlights;
 	 
 	 super(o);
 	 
-	 
+
  }
  
  

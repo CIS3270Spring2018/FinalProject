@@ -4,7 +4,7 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 public class Admin extends Customer {
 	
-	
+	 
 	
 	 public Admin(VariableObject o){
 		 

@@ -37,8 +37,7 @@ public class Flight extends Plane {
 		this.destination = o.getDestination();
 		this.flight_number = o.getFlight_number();
 		this.price = o.getPrice();
-	}
-	
+	}	
 	public String getDepart_time() {
 		return depart_time;
 	}

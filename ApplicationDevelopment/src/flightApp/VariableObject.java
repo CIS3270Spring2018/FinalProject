@@ -47,7 +47,7 @@ public class VariableObject {
 		this.flight_number = flight_number;
 		//this.setFlight_vo(num_of_customers, departed_city, depart_time, destination, arrival_time, flight_number);
 	}
-	
+
 	// construtor to make user with autoincremented person id
 	public VariableObject(String first_name, String last_name, String address, String zip, String username,
 			String password, String email, String ssn, String security_question, String question_answer,

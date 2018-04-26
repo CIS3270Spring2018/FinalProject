@@ -45,16 +45,16 @@ public class Test {
 		
 		 
 			v.setUsername("LL11");
-			v.setPassword("pass");
+	
+			v.setSecurity_question("First pet's name?");
 			
 		
 		Database d = new Database(v);
 		
+		;
 		
 		
-		d.loginUser(v);	
-		
-		System.out.println(v.getUserid());
+		System.out.println(d.forgotPassword(v));
 		
 		
 		

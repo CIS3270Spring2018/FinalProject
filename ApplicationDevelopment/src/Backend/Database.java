@@ -281,6 +281,67 @@ public class Database {
 			}
 		}
 
+		
+	}
+	
+	/** works*/		
+	public void searchFlights(VariableObject o) {
+
+		// objects needed for connection
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+
+
+
+		try {
+		
+
+			// Establish a connection
+			connection = getDriverConnection();
+			System.out.println("Database connected");
+
+			// Create a statement
+			statement = connection.prepareStatement(Query.SELECT_FLIGHTS); 
+
+			statement.setString(1, o.getDeparted_city());
+			statement.setString(2, o.getArrival_city());
+			statement.setString(3, o.getDepartureDay());
+			statement.setString(4, o.getArrivalDay());
+			statement.setString(5, o.getDepart_time());
+			statement.setString(6, o.getArrival_time());
+
+			// Execute a statement
+			resultSet = statement.executeQuery();
+
+			// Iterate through the result and print the student names
+			while (resultSet.next())
+				System.out.println("Flight# : " +resultSet.getString(1) + " Departure City: " + resultSet.getString(2) +
+									" Departure Day: " + resultSet.getString(4) + " Departure Time: " + resultSet.getString(6)    
+					               + " Arrival City: " + resultSet.getString(3) + " Arrival Day: " + resultSet.getString(5)
+					               +" Arrival Time: " + resultSet.getString(7) +" Customer#: " + resultSet.getString(8)
+					               +" Capacity: " + resultSet.getString(9));
+
+		} catch (ClassNotFoundException e) {
+
+
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+
+
+
+			System.out.println(e.getMessage());
+		}
+		// Close the connection
+		finally{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				
+				System.out.println(e.getMessage());
+			}
+		}
+
 
 
 
@@ -1009,7 +1070,89 @@ private void deleteFlightUserFlightDB(VariableObject o)
 		
 	}
 	
-	
+
+	public String forgotPassword(VariableObject o)
+	{
+		// objects needed for connection
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet;
+		int rows = 0;
+
+
+
+		try {
+
+			// Establish a connection
+			connection = getDriverConnection();
+			System.out.println("Database connected");
+
+
+			
+			// Create a statement
+				statement = connection.prepareStatement(Query.SHOW_SECURITY_QUESTION_AND_GET_ANSWER);
+
+
+				statement.setString(1, o.getUsername());
+				System.out.println(o.getUsername());
+				//statement.setString(2, o.getSecurity_question());
+
+				// Execute a statement
+				resultSet = statement.executeQuery();
+				// check the number of rows from sql
+			
+					
+
+					while (resultSet.next())
+					{
+						
+						
+						System.out.println("Answer: " +resultSet.getString(1));
+						
+						o.setQuestion_answer(resultSet.getString(1));
+						o.setPassword(resultSet.getString(2));
+						
+						System.out.println(o.getQuestion_answer());
+						
+						System.out.println("done");
+						return o.getQuestion_answer();
+					}
+				
+				
+			
+			
+	} catch (ClassNotFoundException e) {
+
+
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+
+
+
+			System.out.println(e.getMessage());
+		}
+		// Close the connection
+		finally{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+
+				System.out.println(e.getMessage());
+			}
+		}
+
+
+		if(o.getQuestion_answer() != null)
+		{
+			return o.getQuestion_answer();
+		}
+		else
+		{
+			return "Username was not found";
+		}
+
+	}
+
 	public Customer getCust() {
 		return cust;
 	}

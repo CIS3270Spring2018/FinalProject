@@ -353,12 +353,24 @@ public class RegistrationForm extends Application {
 
 		            //@Override
 		            public void handle(ActionEvent e) {
-		                actiontarget.setFill(Color.FIREBRICK);
+		                actiontarget.setFill(Color.FIREBRICK);    
 		                v.setUsername(userTextField.getText());
 		                v.setPassword(pwBox.getText());
 		                d.loginUser(v);
 		             //   actiontarget.setText("Sign in button pressed");
-		                actiontarget.setText(v.getAddress());
+		                if(v.getAddress() != null)
+		                {
+		                	
+		                	actiontarget.setText("You are logged in. Please exit the window");
+		                }
+		                else
+		                {
+		                	
+		                	actiontarget.setText("Username and Password not found");
+		                }
+		                
+		                
+		                
 		               
 		            }
 		        });
@@ -368,6 +380,84 @@ public class RegistrationForm extends Application {
 		        secondStage.show();
 	}
 	
-	}
+	public void retrievePassword(){
+		
+		/*
+		 * login a user
+		 * 
+		 * */
+		Stage primaryStage = new Stage();
+		
+		primaryStage.setTitle("Retrieve Password");
+	
+		Button btn1 = new Button("Retrieve Password");
+		
+		Label userName1 = new Label("User Name:");
+	
+		
+		TextField userTextField1 = new TextField();
+	
+		
+		ChoiceBox<String> securityQuestion = new ChoiceBox<>();
+		securityQuestion.getItems().addAll("first pet's name?", "first car's make");
+
+		
+		Label answer = new Label("Security Question Answer:");
+	
+		
+		TextField txtAnswer = new TextField();
+
+		
+		final Text actiontarget1 = new Text();
+	
+
+		VBox layout = new VBox();
+		layout.getChildren().addAll(userName1,userTextField1,securityQuestion,answer,txtAnswer,actiontarget1,btn1);
+		
+		
+		Scene scene = new Scene(layout, 500, 500);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	
+	
+		
+		
+		
+
+		btn1.setOnAction(new EventHandler<ActionEvent>() {
+			
+			//@Override
+			public void handle(ActionEvent e) {
+				actiontarget1.setFill(Color.FIREBRICK);
+				String answer = txtAnswer.getText();
+				v.setUsername(userTextField1.getText());
+				v.setSecurity_question(securityQuestion.getValue());
+				d.forgotPassword(v);
+			
+				System.out.println(txtAnswer.getText());
+				System.out.println(v.getQuestion_answer() );
+				System.out.println(securityQuestion.getValue());
+				if(v.getQuestion_answer().equals(txtAnswer.getText()) )
+				{
+					
+					actiontarget1.setText("Your pass word is " + v.getPassword());
+				}
+				else
+				{
+					
+					actiontarget1.setText("Username and Password not found");
+				}
+				
+				
+				
+				
+			}
+		});
+		
+		
+
+		}
+}
+
 
 

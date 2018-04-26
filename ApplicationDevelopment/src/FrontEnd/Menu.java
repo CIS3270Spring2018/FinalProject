@@ -1,5 +1,6 @@
 package FrontEnd;
 
+import flightApp.VariableObject;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,9 +17,12 @@ public class Menu extends Application {
 	Button signup;
 	Button forgotPassword;
 	 RegistrationForm r = new RegistrationForm();
+	 VariableObject v = new VariableObject();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
+		
 		
 		primaryStage.setTitle("Main Menu");
 		login = new Button("Login");
@@ -39,13 +43,17 @@ public class Menu extends Application {
 	    
 		r.runSignUp();
 		
+		
 		});
 		
 		forgotPassword.setOnAction(e -> {
-			
+			r.retrievePassword();
 			
 			
 		});
+		
+		
+			
 		
 		
 		
@@ -57,5 +65,24 @@ public class Menu extends Application {
 	}
 	
 	
+	public void loggedin(){
+		Stage primaryStage = new Stage();
+		primaryStage.setTitle("Welcome");
+		Button logout = new Button("Log Out");
+		
+		
+		VBox layout = new VBox();
+		layout.getChildren().addAll(logout);
+		
+		scene = new Scene(layout,300,300);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		
+		
+		login.setOnAction(e -> v = null);
+		
+		
+	}
+
 
 }

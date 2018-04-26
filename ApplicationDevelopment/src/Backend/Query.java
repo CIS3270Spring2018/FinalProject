@@ -38,6 +38,11 @@ public class Query {
 	/**works*/
 	public static final String SELECT_ALL_FLIGHTS = "select * from flight ";
 	
+	/**works*/
+	public static final String SELECT_FLIGHTS = "select * from flight where "
+	+ " DepartureCity = ? AND ArrivalCity = ? AND DepartureDay = ? AND "
+	+ " ArrivalDay=? AND DepartureTime=? AND ArrivalTime =? ";
+	
    /**works*/
 	public static final String INSERT_FLIGHT_TO_DATABASE = "insert into flight "
 			+ "(DepartureCity,ArrivalCity,DepartureDay,ArrivalDay,DepartureTime,ArrivalTime)"
@@ -85,17 +90,16 @@ public class Query {
 	public static final String REMOVE_USER_FROM_FLIGHT = "update flight set numOfCustomers = ?"
 			+ " where flightnum = ? and DepartureCity = ? and ArrivalCity =?  ";
 	
-	
-	
-	
-	public static final String UPDATE_FLIGHT = "update  flight set flightnumber = ? ,startcity = ? ,destinationcity = ? "
-			+ "where flightnumber = ? and startcity = ? and destinationcity = ?";
-	
+	/*works*/
 	public static final String LOGIN_PERSON = "select * from user where username = ? and password = ? ";
 	
 	
-	public static final String SHOW_SECURITY_QUESTION_AND_GET_ANSWER = "SELECT * from user "
-			+ "where username = ? AND securityQuestion = ? AND securityAnswer = ? ";
+	
+	
+	public static final String UPDATE_FLIGHT = "update  flight set flightnum = ? ,DepartureCity = ? ,ArrivalCity = ? "
+			+ "where flightnumb = ? and DepartureCity = ? and ArrivalCity = ?";
+	
+	public static final String SHOW_SECURITY_QUESTION_AND_GET_ANSWER = "SELECT securityAnswer, password from user  where username = ? ";
 	
 	
 	

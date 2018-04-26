@@ -13,7 +13,7 @@ public interface AirCraft {
 	static void land(){
 		System.out.print("Drop landing gear");
 	}
-	
+
 	
 	static void start(){
 		System.out.print("Engine Cranking ...");

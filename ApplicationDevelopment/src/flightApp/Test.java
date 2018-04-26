@@ -13,6 +13,7 @@ public class Test {
 
 	public void run(){
 	
+		try{
 	  //show splash screeen 
 		
 		// then the menu
@@ -30,11 +31,20 @@ public class Test {
 		
 			
 			
-		VariableObject v = new VariableObject();
+		VariableObject v = new VariableObject(2, "Orlando","1200", "Atlanta", 
+				"1330", "0002");
 		
 		Database d = new Database(v);
 	
-		d.showAllFlights();	
+
+		  d.showAllUser();
+	
+		  d.addFlightToDB(v);
+		}
+		catch(NullPointerException e)
+		{
+			System.out.println("Object is " + e.getMessage());
+		}
 	
 	
 	

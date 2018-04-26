@@ -19,15 +19,216 @@ public class Database {
 		setCust(o);
 
 	}
-	public Customer getCust() {
-		return cust;
-	}
+
+	/**works*/
+	public void signupCustomer(VariableObject o){
+		
+		/*String first_name,String last_name,String address,String zip,String username,String
+		 password,String email,String ssn,String security_question,String question_answer*/
+	
+	// objects needed for connection
+	Connection connection = null;
+	PreparedStatement statement = null;
+	int resultSet;
+	
+	
+	/** nned to make sure username email ssn is not already in system*/
 
 
-	public void setCust(VariableObject o) {
-		this.cust = o.getCust_vo();
+
+	try {
+
+		// Establish a connection
+		connection = getDriverConnection();
+				System.out.println("Database connected");
+
+		// Create a statement
+		statement = connection.prepareStatement(Query.INSERT_CUSTOMER_INTO_PERSON_DATABASE);
+
+		statement.setInt(1, 2);  // need to havee auto increment so we dont need variable
+		statement.setString(2, o.getFirst_name());
+		statement.setString(3, o.getLast_name());
+		statement.setString(4, o.getAddress());
+		statement.setString(5, o.getZip());
+		statement.setString(6,o.getUsername());
+		statement.setString(7,o.getPassword());
+		statement.setString(8, o.getEmail());
+		statement.setString(9, o.getSsn());
+		statement.setString(10, o.getSecurity_question());
+		statement.setString(11, o.getQuestion_answer());
+		statement.setBoolean(12, false);
+	
+
+
+
+		// Execute a statement
+		resultSet = statement.executeUpdate();
+		
+		System.out.println("User added");
+
+
+	} catch (ClassNotFoundException e) {
+
+
+		System.out.println(e.getMessage());
+	} catch (SQLException e) {
+
+
+
+		System.out.println(e.getMessage());
 	}
- 
+	// Close the connection
+	finally{
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+		}
+	}
+
+}
+	/**works*/	
+	public void signupAdmin(VariableObject o){	
+		
+		// objects needed for connection
+		Connection connection = null;
+		PreparedStatement statement = null;
+		int resultSet;
+		
+		
+		/** nned to make sure username email ssn is not already in system*/
+
+
+
+		try {
+	
+
+			// Establish a connection
+			connection = getDriverConnection();
+			System.out.println("Database connected");
+
+			// Create a statement
+			statement = connection.prepareStatement(Query.INSERT_ADMIN_INTO_PERSON_DATABASE);
+
+			
+			statement.setInt(1, 2);  // need to havee auto increment so we dont need variable
+			statement.setString(2, o.getFirst_name());
+			statement.setString(3, o.getLast_name());
+			statement.setString(4, o.getAddress());
+			statement.setString(5, o.getZip());
+			statement.setString(6,o.getUsername());
+			statement.setString(7,o.getPassword());
+			statement.setString(8, o.getEmail());
+			statement.setString(9, o.getSsn());
+			statement.setString(10, o.getSecurity_question());
+			statement.setString(11, o.getQuestion_answer());
+			statement.setBoolean(12, true);
+		
+			/*statement.setString(1, o.getFirst_name());
+			statement.setString(2, o.getLast_name());
+			statement.setString(3, o.getAddress());
+			statement.setString(4, o.getZip());
+			statement.setString(5,o.getUsername());
+			statement.setString(6,o.getPassword());
+			statement.setString(7, o.getEmail());
+			statement.setString(8, o.getSsn());
+			statement.setString(9, o.getSecurity_question());
+			statement.setString(10, o.getQuestion_answer());
+		*/
+		
+
+
+
+			// Execute a statement
+			resultSet = statement.executeUpdate();
+			
+			System.out.println("User added");
+
+
+		} catch (ClassNotFoundException e) {
+
+          
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+
+
+
+			System.out.println(e.getMessage());
+		}
+		// Close the connection
+		finally{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				
+				System.out.println(e.getMessage());
+			}
+		}
+		
+	}
+	/**works*/	
+	public void showAllUser(){
+		// objects needed for connection
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet;
+
+
+
+		try {
+		
+			// Establish a connection
+			connection = getDriverConnection();
+			System.out.println("Database connected");
+
+			// Create a statement
+			statement = connection.prepareStatement(Query.SELECT_ALL_FROM_PERSON);
+
+
+
+			// Execute a statement
+			resultSet = statement.executeQuery();
+			
+			while (resultSet.next())
+			{
+				/* original System.out.println("username: " +resultSet.getString(2) + " password: " +resultSet.getString(3)
+				+ " Fname: " + resultSet.getString(4) + " Lname: " + resultSet.getString(5)
+				+ " address" + ": " +resultSet.getString(6) + " zip: " + resultSet.getString(7)
+				+ " email: " + resultSet.getString(8) + " ssn: " + resultSet.getString(9) 
+				+ " Question: " + resultSet.getString(10)+ " answer: " +resultSet.getString(11) 
+				+ " admin: " +resultSet.getBoolean(12));*/
+				
+				System.out.println("username: " +resultSet.getString(6) + " password: " +resultSet.getString(7)
+				+ " Fname: " + resultSet.getString(2) + " Lname: " + resultSet.getString(3)
+				+ " address" + ": " +resultSet.getString(4) + " zip: " + resultSet.getString(5)
+				+ " email: " + resultSet.getString(8) + " ssn: " + resultSet.getString(9) 
+				+ " Question: " + resultSet.getString(10)+ " answer: " +resultSet.getString(11) 
+				+ " admin: " +resultSet.getBoolean(12));
+			}
+
+
+		} catch (ClassNotFoundException e) {
+
+
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+
+
+
+			System.out.println(e.getMessage());
+		}
+		// Close the connection
+		finally{
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+			
 	public void showAllFlights() {
 
 		// objects needed for connection
@@ -92,50 +293,54 @@ public class Database {
 		int resultSet;
 
 
-if(o.isAdmin())
-{
-		try {
-			
+		//if(o.isAdmin())
+		//{
+			try {
 
-			// Establish a connection
-			connection = getDriverConnection();
+
+				// Establish a connection
+				connection = getDriverConnection();
 				System.out.println("Database connected");
 
-			// Create a statement
-			statement = connection.prepareStatement(Query.INSERT_FLIGHT_TO_DATABASE);
+				// Create a statement
+				statement = connection.prepareStatement(Query.INSERT_FLIGHT_TO_DATABASE);
 
-			statement.setInt(1,o.getFlight_vo().getNum_of_customers());
-			statement.setString(2, o.getFlight_vo().getDeparted_city());
-			statement.setString(3, o.getFlight_vo().getDestination());
-
-
-
-			// Execute a statement
-			resultSet = statement.executeUpdate();
-			
-			System.out.println("Flight added");
-		
-
-
-		} catch (ClassNotFoundException e) {
-
-
-			System.out.println(e.getMessage());
-		} catch (SQLException e) {
+				statement.setString(1, o.getFlight_number());
+				statement.setString(2, "1");
+				statement.setInt(3,o.getNum_of_customers());
+				statement.setString(4, o.getDeparted_city());
+				statement.setString(5, o.getDestination());
+				statement.setString(6, o.getDepart_time());
+				statement.setString(7, o.getArrival_time());
 
 
 
-			System.out.println(e.getMessage());
-		}	// Close the connection
-		finally{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				
+				// Execute a statement
+				resultSet = statement.executeUpdate();
+
+				System.out.println("Flight added");
+
+
+
+			} catch (ClassNotFoundException e) {
+
+
 				System.out.println(e.getMessage());
+			} catch (SQLException e) {
+
+
+
+				System.out.println(e.getMessage());
+			}	// Close the connection
+			finally{
+				try {
+					connection.close();
+				} catch (SQLException e) {
+
+					System.out.println(e.getMessage());
+				}
 			}
-		}
-}
+		//}
 
 	}
 
@@ -190,190 +395,7 @@ if(o.isAdmin())
 
 	}
 
-	public void signupCustomer(VariableObject o){
-		
-		/*String first_name,String last_name,String address,String zip,String username,String
-		 password,String email,String ssn,String security_question,String question_answer*/
-	
-	// objects needed for connection
-	Connection connection = null;
-	PreparedStatement statement = null;
-	int resultSet;
-	
-	
-	/** nned to make sure username email ssn is not already in system*/
 
-
-
-	try {
-
-		// Establish a connection
-		connection = getDriverConnection();
-				System.out.println("Database connected");
-
-		// Create a statement
-		statement = connection.prepareStatement(Query.INSERT_CUSTOMER_INTO_PERSON_DATABASE);
-
-		statement.setString(1,o.getUsername());
-		statement.setString(2,o.getPassword());
-		statement.setString(3, o.getFirst_name());
-		statement.setString(4, o.getLast_name());
-		statement.setString(5, o.getAddress());
-		statement.setString(6, o.getZip());
-		statement.setString(7, o.getEmail());
-		statement.setString(8, o.getSsn());
-		statement.setString(9, o.getSecurity_question());
-		statement.setString(10, o.getQuestion_answer());
-		statement.setBoolean(11, false);
-
-
-
-		// Execute a statement
-		resultSet = statement.executeUpdate();
-		
-		System.out.println("User added");
-
-
-	} catch (ClassNotFoundException e) {
-
-
-		System.out.println(e.getMessage());
-	} catch (SQLException e) {
-
-
-
-		System.out.println(e.getMessage());
-	}
-	// Close the connection
-	finally{
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			
-			System.out.println(e.getMessage());
-		}
-	}
-
-}
-		
-	public void signupAdmin(VariableObject o){	
-		
-		// objects needed for connection
-		Connection connection = null;
-		PreparedStatement statement = null;
-		int resultSet;
-		
-		
-		/** nned to make sure username email ssn is not already in system*/
-
-
-
-		try {
-	
-
-			// Establish a connection
-			connection = getDriverConnection();
-			System.out.println("Database connected");
-
-			// Create a statement
-			statement = connection.prepareStatement(Query.INSERT_ADMIN_INTO_PERSON_DATABASE);
-
-			statement.setString(1,o.getUsername());
-			statement.setString(2, o.getPassword());
-			statement.setString(3, o.getFirst_name());
-			statement.setString(4,o.getLast_name());
-			statement.setString(5, o.getAddress());
-			statement.setString(6,o.getZip());
-			statement.setString(7,o.getEmail());
-			statement.setString(8,o.getSsn());
-			statement.setString(9,o.getSecurity_question());
-			statement.setString(10, o.getQuestion_answer());
-			statement.setBoolean(11, true);
-
-
-
-			// Execute a statement
-			resultSet = statement.executeUpdate();
-			
-			System.out.println("User added");
-
-
-		} catch (ClassNotFoundException e) {
-
-
-			System.out.println(e.getMessage());
-		} catch (SQLException e) {
-
-
-
-			System.out.println(e.getMessage());
-		}
-		// Close the connection
-		finally{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				
-				System.out.println(e.getMessage());
-			}
-		}
-		
-	}
-			
-	public void showAllUser(){
-		// objects needed for connection
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet;
-
-
-
-		try {
-		
-			// Establish a connection
-			connection = getDriverConnection();
-			System.out.println("Database connected");
-
-			// Create a statement
-			statement = connection.prepareStatement(Query.SELECT_ALL_FROM_PERSON);
-
-
-
-			// Execute a statement
-			resultSet = statement.executeQuery();
-			
-			while (resultSet.next())
-			{
-				System.out.println("username: " +resultSet.getString(2) + " password: " +resultSet.getString(3)
-				+ " Fname: " + resultSet.getString(4) + " Lname: " + resultSet.getString(5)
-				+ " address" + ": " +resultSet.getString(6) + " zip: " + resultSet.getString(7)
-				+ " email: " + resultSet.getString(8) + " ssn: " + resultSet.getString(9) 
-				+ " Question: " + resultSet.getString(10)+ " answer: " +resultSet.getString(11) 
-				+ " admin: " +resultSet.getBoolean(12));
-			}
-
-
-		} catch (ClassNotFoundException e) {
-
-
-			System.out.println(e.getMessage());
-		} catch (SQLException e) {
-
-
-
-			System.out.println(e.getMessage());
-		}
-		// Close the connection
-		finally{
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				
-				System.out.println(e.getMessage());
-			}
-		}
-	}
-			
 		
 	public void addUserToFlightDB(VariableObject o){
 		
@@ -755,6 +777,15 @@ if(o.isAdmin())
 		    return n;
 		    }
 	
+	
+	public Customer getCust() {
+		return cust;
+	}
+
+
+	public void setCust(VariableObject o) {
+		this.cust = o.getCust_vo();
+	}
 	                                                                                                                                                           	
 		    
 		     
@@ -772,7 +803,7 @@ if(o.isAdmin())
 		connection = DriverManager.getConnection
 				(Query.DATABASE, Query.USERNAME,Query.PASSWORD );
 		
-		System.out.println("Database connected");
+	
 		return connection;
 	}
 	

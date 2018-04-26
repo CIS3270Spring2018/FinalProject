@@ -8,7 +8,6 @@ public abstract class Person {
 
 	private String first_name;  // hold the persons first name
 	private String last_name;   // hold the persons last name
-	 //private Date dob; // might want to use new date format local date of
 	private String address;     // hold the persons address
 	private String zip;         // hold the person zip code
 	private String username;    // hold the persons username 

@@ -8,9 +8,9 @@ public class Flight extends Plane {
 	private int num_of_customers;      // number of customers on the flight
 	private ArrayList<Customer> cust;  // arraylist to hold all the customers info
 	private String departed_city;      // the city the plane leaves
-	//private Date depart_time;        // the day and time the flight begins
+	private String depart_time;        // the day and time the flight begins
 	private String destination;        // the destination city
-	//private Date arrival_time;       // the day and time the flight will end
+	private String arrival_time;       // the day and time the flight will end
 	private String flight_number;      // the flights number
 	private double price;              // the price of the flight// might need to use bigdecimal for rounding issue
 	
@@ -20,9 +20,9 @@ public class Flight extends Plane {
 		super(45);
 		num_of_customers = 0;
 		departed_city = "Atlanta";
-		// depart time
+		depart_time ="1200";
 		destination = "Flordia";
-		// arrvial time
+		arrival_time = "1300";
 		flight_number = "00001";
 		price = 500.00;
 		
@@ -39,6 +39,22 @@ public class Flight extends Plane {
 		this.price = o.getPrice();
 	}
 	
+	public String getDepart_time() {
+		return depart_time;
+	}
+
+	public void setDepart_time(String depart_time) {
+		this.depart_time = depart_time;
+	}
+
+	public String getArrival_time() {
+		return arrival_time;
+	}
+
+	public void setArrival_time(String arrival_time) {
+		this.arrival_time = arrival_time;
+	}
+
 	public int getNum_of_customers() {
 		return num_of_customers;
 	}

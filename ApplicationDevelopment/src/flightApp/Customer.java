@@ -29,7 +29,20 @@ private ArrayList<Flight> bookedFlights;
  
 
  public boolean equals(Object o){
-	 return true;
+	 
+	 if(o instanceof VariableObject)
+	 {
+		 VariableObject vo = (VariableObject) o;
+		 
+		 if(vo.getFirst_name() == getFirst_name() && 
+				 vo.getLast_name() == getLast_name() && 
+				 vo.getSsn() == getSsn())
+		 {
+			 return true;
+		 }
+	 }
+	
+	 return false;
  }
  
  public ArrayList<Flight> getBookedFlights() {
@@ -37,14 +50,14 @@ private ArrayList<Flight> bookedFlights;
 	}
 
 
-	public void setBookedFlights(Flight bookedFlight) {
+	public void setBookedFlights(VariableObject o) {
 		
 		// get the customer id 
 		
 		// select all the flight for customer
 		
 		// put flights into booked flights arraylist
-		this.bookedFlights.add(bookedFlight);
+		this.bookedFlights.add(o.getFlight_vo());
 	
 	}
 	

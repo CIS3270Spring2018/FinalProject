@@ -3,12 +3,13 @@ package flightApp;
 
 
 public abstract class Person {
-	
+
 
 
 	private String first_name;  // hold the persons first name
 	private String last_name;   // hold the persons last name
 	private String address;     // hold the persons address
+	private String state;       // hold person state
 	private String zip;         // hold the person zip code
 	private String username;    // hold the persons username 
 	private String password;     // hold the persons password
@@ -25,6 +26,7 @@ public abstract class Person {
 		 this.first_name = o.getFirst_name();
 		 this.last_name = o.getLast_name();
 		 this.address = o.getAddress();
+		 this.state = o.getState();
 		 this.zip = o.getZip();
 		 this.username = o.getUsername();
 		 this.password = o.getPassword();
@@ -120,6 +122,22 @@ public abstract class Person {
 		public void setQuestion_answer(String question_answer) {
 			this.question_answer = question_answer;
 		}
+		public String getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state = state;
+		}
+
+		public boolean isAdmin() {
+			return admin;
+		}
+
+		public void setAdmin(boolean admin) {
+			this.admin = admin;
+		}
+
 	 
 
 }

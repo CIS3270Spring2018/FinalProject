@@ -9,15 +9,19 @@ public class VariableObject {
 	private ArrayList<Customer> cust;  // arraylist to hold all the customers info
 	private String departed_city;      // the city the plane leaves
 	private String depart_time;        // the day and time the flight begins
-	private String destination;        // the destination city
+	private String arrival_city;        // the arrival_city city
 	private String arrival_time;       // the day and time the flight will end
-	private String flight_number;      // the flights number
+	private int flight_number;      // the flights number
+	private String departureDay;       // the day the flight starts
+	private String arrivalDay;         // the day the flight ends
 	private double price;              // the price of the flight// might need to use bigdecimal for rounding issue
 	
 	// person variables
+	private int userid;         // hold the persons id number
 	private String first_name;  // hold the persons first name
 	private String last_name;   // hold the persons last name
 	private String address;     // hold the persons address
+	private String state;       // hold person state
 	private String zip;         // hold the person zip code
 	private String username;    // hold the persons username 
 	private String password;     // hold the persons password
@@ -36,16 +40,16 @@ public class VariableObject {
 		// TODO Auto-generated constructor stub
 	}
 	// constructor to for flights
-	public VariableObject(int num_of_customers, String departed_city, String depart_time, String destination,
-			String arrival_time, String flight_number) {
+	public VariableObject(int num_of_customers, String departed_city, String depart_time, String arrival_city,
+			String arrival_time, int flight_number) {
 		super();
 		this.num_of_customers = num_of_customers;
 		this.departed_city = departed_city;
 		this.depart_time = depart_time;
-		this.destination = destination;
+		this.arrival_city = arrival_city;
 		this.arrival_time = arrival_time;
 		this.flight_number = flight_number;
-		//this.setFlight_vo(num_of_customers, departed_city, depart_time, destination, arrival_time, flight_number);
+		//this.setFlight_vo(num_of_customers, departed_city, depart_time, arrival_city, arrival_time, flight_number);
 	}
 
 	// construtor to make user with autoincremented person id
@@ -135,14 +139,14 @@ public class VariableObject {
 	}
 	
 	// set the object flight inside Variable Object
-	public void setFlight_vo(int num_of_customers, String departed_city, String depart_time, String destination,
-			String arrival_time, String flight_number) {
+	public void setFlight_vo(int num_of_customers, String departed_city, String depart_time, String arrival_city,
+			String arrival_time, int flight_number) {
 	
 		this.flight_vo.setNum_of_customers(num_of_customers);
 		this.flight_vo.setDeparted_city(departed_city); 
 		this.flight_vo.setDepart_time(depart_time);
 		this.flight_vo.setArrival_time(arrival_time);
-		this.flight_vo.setDestination(destination);
+		this.flight_vo.setArrival_city(arrival_city);
 		this.flight_vo.setFlight_number(flight_number);
 	}
 	
@@ -166,17 +170,17 @@ public class VariableObject {
 	public void setDeparted_city(String departed_city) {
 		this.departed_city = departed_city;
 	}
-	public String getDestination() {
-		return destination;
+	public String getArrival_city() {
+		return arrival_city;
 	}
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setArrival_city(String arrival_city) {
+		this.arrival_city = arrival_city;
 	}
-	public String getFlight_number() {
+	public int getFlight_number() {
 		return flight_number;
 	}
-	public void setFlight_number(String flight_number) {
-		this.flight_number = flight_number;
+	public void setFlight_number(int i) {
+		this.flight_number = i;
 	}
 	public double getPrice() {
 		return price;
@@ -262,6 +266,31 @@ public class VariableObject {
 	public void setArrival_time(String arrival_time) {
 		this.arrival_time = arrival_time;
 	}
+	public String getDepartureDay() {
+		return departureDay;
+	}
+	public void setDepartureDay(String departureDay) {
+		this.departureDay = departureDay;
+	}
+	public String getArrivalDay() {
+		return arrivalDay;
+	}
+	public void setArrivalDay(String arrivalDay) {
+		this.arrivalDay = arrivalDay;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	
 
 
+}
 }

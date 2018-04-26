@@ -13,7 +13,7 @@ public class Admin extends Customer {
 		 
 		 
 	 }
-	 
+	
 	 public void addFlight()
 	 {
 		 // create a new flight with flight info

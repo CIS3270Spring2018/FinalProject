@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 import Backend.Database;
 
+
+// class to test code outside GUI
 public class Test {
 
 	public void run(){
@@ -28,18 +30,37 @@ public class Test {
 		
 		
 		
+	
+			
+			
+		VariableObject v = new VariableObject();
+		//2, "Orlando", "Atlanta","1200", "1330"
+		v.setDeparted_city("Orlando");
+		v.setArrival_city("New York");
+		v.setDepart_time("1200");
+		v.setArrival_time("1500");
+		v.setDepartureDay("01/02/2018");
+		v.setArrivalDay("01/02/2018");
+		v.setFlight_number(6);
+		v.setUsername("LL11");
+		v.setUserid(0);
 		
+		 
+			v.setUsername("LL11");
+	
+			v.setSecurity_question("First pet's name?");
 			
-			
-		VariableObject v = new VariableObject(2, "Orlando","1200", "Atlanta", 
-				"1330", "0002");
 		
 		Database d = new Database(v);
-	
+		
+		;
+		
+		
+		System.out.println(d.forgotPassword(v));
+		
+		
+		
 
-		  d.showAllUser();
-	
-		  d.addFlightToDB(v);
 		}
 		catch(NullPointerException e)
 		{

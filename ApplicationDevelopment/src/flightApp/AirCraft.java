@@ -2,6 +2,7 @@ package flightApp;
 
 public interface AirCraft {
 
+	// methods for aircraft behaivor
 	static void ascend(){
 		System.out.print("Gaining altitude");
 	}
@@ -13,7 +14,7 @@ public interface AirCraft {
 	static void land(){
 		System.out.print("Drop landing gear");
 	}
-
+	
 	
 	static void start(){
 		System.out.print("Engine Cranking ...");

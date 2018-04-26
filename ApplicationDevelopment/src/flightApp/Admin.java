@@ -2,9 +2,10 @@ package flightApp;
 
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 public class Admin extends Customer {
 	
-	 
+	
 	
 	 public Admin(VariableObject o){
 		 
@@ -13,51 +14,38 @@ public class Admin extends Customer {
 		 
 		 
 	 }
-	
-	 public void addFlight()
-	 {
-		 // create a new flight with flight info
-		 
-		 // add the new flight to the flight database
-		 
-		 // show the flight was successfully added or an error
+	 
+	 
+	@Override
+	 public String toString(Object o){
+		 return "The customer is " + getFirst_name()+ " " + getLast_name();
 		 
 	 }
-	 public void deleteFlight()
-	 {
-		// select the flight 
-		 
-		
-		 
-		 // find the flight in the customer flight database
-		 
-		 // remove flight from all customers arraylist and the database
-		 
-		 // remove flight from customer flight database
-		 
-		 // remove flight from flights
-	 }
-	 public void updateFlight()
-	 {
-		// select the flight and input changes the flight info
-		 
-		 // get the original date
-		
-		 // check which data is changed
-		 
-		 // if variable is null use original
-		 
-		// update the row in the database with the changed values
-		 
-		 // show with javafx that the table has been changed or an error
-		 
-		
-	 }
-	 public void deleteUser()
-	 {
-		 // get the user id or name
-		 
-		 // select the user and delete them from the table
-	 }
+	 
+	 
 
+	 public boolean equals(Object o){
+		 
+		 if(o instanceof VariableObject)
+		 {
+			 VariableObject vo = (VariableObject) o;
+			 
+			 if(vo.getFirst_name() == getFirst_name() && 
+					 vo.getLast_name() == getLast_name() && 
+					 vo.getSsn() == getSsn())
+			 {
+				 return true;
+			 }
+		 }
+		
+		 return false;
+	 }
+	
+		
+		
+
+	
+
+	 
+	 
 }

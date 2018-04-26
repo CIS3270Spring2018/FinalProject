@@ -3,7 +3,7 @@ package flightApp;
 import java.util.Random;
 
 public abstract class Plane implements AirCraft {
-	
+
 	
 	private int max_customers;   // max number of customer that can fit on our plane
 	private int plane_number;    // the serial number of the plane 
